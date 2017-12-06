@@ -9,8 +9,8 @@ Additionally, it emphasizes that you must
 before you can implement a solution to the problem in Python.
 
 Authors: David Mutchler, Dave Fisher, Valerie Galluzzi, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Rachel Wood.
+"""  # DONE 1
 
 import rosegraphics as rg
 
@@ -96,7 +96,7 @@ def draw_parallel_lines(n, point, length, window):
       :type window: rg.RoseWindow
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE 2
     #          Tests have been written for you (above).
     #
     # CONSIDER using the ACCUMULATOR IN GRAPHICS pattern,
@@ -109,6 +109,14 @@ def draw_parallel_lines(n, point, length, window):
     #          ** FIRST DO A CONCRETE EXAMPLE BY HAND! **
     ####################################################################
     # ------------------------------------------------------------------
+    x = point.x  # Initialize x and y BEFORE the loop
+    y = point.y  # Choose values that make the FIRST object easy to draw
+
+    for k in range(n):
+        paraline = rg.Line(rg.Point(x, y), rg.Point(x+length, y))
+        y = y+30
+        paraline.attach_to(window)
+        window.render()
 
 
 def run_test_draw_lines():
@@ -174,6 +182,16 @@ def draw_lines(n, point, window):
     #          ** FIRST DO A CONCRETE EXAMPLE BY HAND! **
     ####################################################################
     # ------------------------------------------------------------------
+    x = point.x  # Initialize x and y BEFORE the loop
+    y = point.y  # Choose values that make the FIRST object easy to draw
+
+    # n-1 for smoother incraments from -100 to 100
+    inc = 200 / (n - 1)
+
+    for k in range(n):
+        paraline = rg.Line(rg.Point(x, y), rg.Point(x + 100, y -100 + k*inc))
+        paraline.attach_to(window)
+        window.render()
 
 
 # ----------------------------------------------------------------------
