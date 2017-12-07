@@ -181,6 +181,16 @@ def run_test_draw_circles_from_rectangle():
 
     window1.close_on_mouse_click()
 
+    window1 = rg.RoseWindow(620, 380)
+
+    rectangle = rg.Rectangle(rg.Point(375, 330), rg.Point(350, 280))
+    rectangle.fill_color = 'yellow'
+    rectangle.outline_color = 'brown'
+    rectangle.outline_thickness = 5
+    draw_circles_from_rectangle(6, 10, rectangle, window1)
+
+    window1.close_on_mouse_click()
+
 
 def draw_circles_from_rectangle(m, n, rectangle, window):
     """
@@ -380,6 +390,45 @@ def draw_lines_from_rectangles(rectangle1, rectangle2, n, window):
     #          ** FIRST DO A CONCRETE EXAMPLE BY HAND! **
     ####################################################################
     # ------------------------------------------------------------------
+    rectangle1.attach_to(window)
+    rectangle2.attach_to(window)
+
+    c1x1 = rectangle1.corner_1.x
+    c1y1 = rectangle1.corner_1.y
+    c2x1 = rectangle1.corner_2.x
+    c2y1 = rectangle1.corner_2.y
+
+    if c1x1 > c2x1:
+        c1x1 = rectangle1.corner_2.x
+        c2x1 = rectangle1.corner_1.x
+
+    if c1y1 > c2y1:
+        c1y1 = rectangle1.corner_2.y
+        c2y1 = rectangle1.corner_1.y
+
+    L1_1 = (c2y1 - c1y1)
+    L2_1 = (c2x1 - c1x1)
+
+    c1x2 = rectangle2.corner_1.x
+    c1y2 = rectangle2.corner_1.y
+    c2x2 = rectangle2.corner_2.x
+    c2y2 = rectangle2.corner_2.y
+
+    if c1x2 > c2x2:
+        c1x2 = rectangle2.corner_2.x
+        c2x2 = rectangle2.corner_1.x
+
+    if c1y2 > c2y2:
+        c1y2 = rectangle2.corner_2.y
+        c2y2 = rectangle2.corner_1.y
+
+    L1_2 = (c2y2 - c1y2)
+    L2_2 = (c2x2 - c1x2)
+
+    line = rg.Line(rg.Point(L1_1+c1y1, L2_1+c1x1), rg.Point(L1_2+c2y2,
+                                                            L2_2+c1x2))
+    line.attach_to(window)
+
 
 
 # ----------------------------------------------------------------------
