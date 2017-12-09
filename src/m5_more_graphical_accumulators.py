@@ -425,15 +425,35 @@ def draw_lines_from_rectangles(rectangle1, rectangle2, n, window):
     L1_2 = (c1y2 - c2y2)/2
     L2_2 = (c1x2 - c2x2)/2
 
-    print(L2_1)
-    print(L2_1+c1x1)
+    #print(L2_1)
+    #print(L2_1+c1x1)
 
     pointone = rg.Point(L2_1+c2x1, L1_1+c2y1)
     pointtwo = rg.Point(L2_2+c2x2, L1_2+c2y2)
 
     line = rg.Line(pointone, pointtwo)
+    line.color = rectangle1.outline_color
+    line.thickness = 5
 
     line.attach_to(window)
+
+    for k in range(n-1):
+        pointone = rg.Point(pointone.x - L2_1, pointone.y + L1_1)
+        pointtwo = rg.Point(pointtwo.x - L2_1, pointtwo.y + L1_1)
+
+        # print(pointone)
+        # print(pointtwo)
+
+        line = rg.Line(pointone, pointtwo)
+        if (k+2) % 2 == 0:
+            line.color = rectangle2.outline_color
+        else:
+            line.color = rectangle1.outline_color
+
+        line.thickness = 5
+
+        line.attach_to(window)
+
     window.render()
     # Note to self. Make sure to check the inequalities to get the desiered
     # answers
