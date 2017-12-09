@@ -377,7 +377,7 @@ def draw_lines_from_rectangles(rectangle1, rectangle2, n, window):
       :type window: rg.RoseWindow
       """
     # ------------------------------------------------------------------
-    # TODO: 5. Implement and test this function.
+    # DONE 5
     #          Tests have been written for you (above).
     #
     # CONSIDER using the ACCUMULATOR IN GRAPHICS pattern,
@@ -398,37 +398,45 @@ def draw_lines_from_rectangles(rectangle1, rectangle2, n, window):
     c2x1 = rectangle1.corner_2.x
     c2y1 = rectangle1.corner_2.y
 
-    if c1x1 > c2x1:
+    if c1x1 < c2x1:
         c1x1 = rectangle1.corner_2.x
         c2x1 = rectangle1.corner_1.x
 
-    if c1y1 > c2y1:
+    if c1y1 < c2y1:
         c1y1 = rectangle1.corner_2.y
         c2y1 = rectangle1.corner_1.y
 
-    L1_1 = (c2y1 - c1y1)
-    L2_1 = (c2x1 - c1x1)
+    L1_1 = (c1y1 - c2y1)/2
+    L2_1 = (c1x1 - c2x1)/2
 
     c1x2 = rectangle2.corner_1.x
     c1y2 = rectangle2.corner_1.y
     c2x2 = rectangle2.corner_2.x
     c2y2 = rectangle2.corner_2.y
 
-    if c1x2 > c2x2:
+    if c1x2 < c2x2:
         c1x2 = rectangle2.corner_2.x
         c2x2 = rectangle2.corner_1.x
 
-    if c1y2 > c2y2:
+    if c1y2 < c2y2:
         c1y2 = rectangle2.corner_2.y
         c2y2 = rectangle2.corner_1.y
 
-    L1_2 = (c2y2 - c1y2)
-    L2_2 = (c2x2 - c1x2)
+    L1_2 = (c1y2 - c2y2)/2
+    L2_2 = (c1x2 - c2x2)/2
 
-    line = rg.Line(rg.Point(L1_1+c1y1, L2_1+c1x1), rg.Point(L1_2+c2y2,
-                                                            L2_2+c1x2))
+    print(L2_1)
+    print(L2_1+c1x1)
+
+    pointone = rg.Point(L2_1+c2x1, L1_1+c2y1)
+    pointtwo = rg.Point(L2_2+c2x2, L1_2+c2y2)
+
+    line = rg.Line(pointone, pointtwo)
+
     line.attach_to(window)
-
+    window.render()
+    # Note to self. Make sure to check the inequalities to get the desiered
+    # answers
 
 
 # ----------------------------------------------------------------------
